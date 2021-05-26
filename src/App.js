@@ -6,17 +6,27 @@ const Button = ({ text, ...restProps }) => (
   <button {...restProps}>{text}</button>
 )
 
+const useCounter = () => {
+  const [value, setValue] = useState(0)
+
+  const increment = () => setValue((value) => value + 1)
+
+  const decrement = () => setValue((value) => value - 1)
+
+  const setToZero = () => setValue(0)
+
+  return { value, increment, decrement, setToZero }
+}
+
 const App = () => {
-  const [counter, setCounter] = useState(0)
+  const counter = useCounter()
 
-  const increment = () => setCounter((counter) => counter + 1)
-
-  const setToZero = () => setCounter(0)
   return (
     <div>
-      <Display counter={counter} />
-      <Button onClick={increment} text="plus" />
-      <Button onClick={setToZero} text="zero" />
+      <Display counter={counter.value} />
+      <Button onClick={counter.increment} text="plus" />
+      <Button onClick={counter.decrement} text="minus" />
+      <Button onClick={counter.setToZero} text="zero" />
     </div>
   )
 }
