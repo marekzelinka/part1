@@ -48,15 +48,13 @@ function Hello2() {
   )
 }
 
-function Hello(props) {
-  console.log(props)
-
-  let getBornYear = () => new Date().getFullYear() - props.age
+function Hello({ name, age }) {
+  let getBornYear = () => new Date().getFullYear() - age
 
   return (
     <div>
       <p>
-        Hello {props.name}, you are {props.age} years old
+        Hello {name}, you are {age} years old
       </p>
       <p>So you were probalby born in {getBornYear()}</p>
     </div>
