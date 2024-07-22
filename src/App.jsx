@@ -13,14 +13,18 @@ function App() {
       </header>
       <main>
         <StepCounter />
+        <hr />
         <ValueCounter />
+        <hr />
         <Hello2 />
         <Hello name="George" age={26} />
         <Hello name="Diasy" age={16} />
         <Hello name={name} age={age} />
         <Hello name="Maya" age={26 + 10} />
+        <hr />
         <p>{friends}</p>
         <FriendList />
+        <hr />
         <Hello name="Partick" age={9} />
         <Hello name="Samo" age={4} />
         <Hello name="Matej" age={5} />
@@ -65,10 +69,18 @@ function StepCounter() {
         />
         {clicks.right}
       </div>
-      <p>{allClicks.join(' ')}</p>
+      <StepCounterHistory allClicks={allClicks} />
       <p>total {total}</p>
     </div>
   )
+}
+
+function StepCounterHistory({ allClicks }) {
+  if (!allClicks.length) {
+    return <p>the app is used by pressing buttons</p>
+  }
+
+  return <p>button press history: {allClicks.join(' ')}</p>
 }
 
 function ValueCounter() {
