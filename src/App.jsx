@@ -11,20 +11,18 @@ function App() {
       </header>
       <main>
         <Hello2 />
-        <Hello name="George" />
-        <Hello name="Diasy" />
+        <Hello name="George" age={26} />
+        <Hello name="Diasy" age={16} />
         <Hello name={name} age={age} />
         <Hello name="Maya" age={26 + 10} />
         <p>{friends}</p>
         <FriendList />
-        <Hello />
-        <Hello />
-        <Hello />
-        <Hello />
-        <Hello />
-        <Hello />
-        <Hello />
-        <Hello />
+        <Hello name="Partick" age={9} />
+        <Hello name="Samo" age={4} />
+        <Hello name="Matej" age={5} />
+        <Hello name="Ryan" age={42} />
+        <Hello name="Michael" age={41} />
+        <Hello name="Kent" age={38} />
       </main>
       <Footer />
     </>
@@ -53,11 +51,14 @@ function Hello2() {
 function Hello(props) {
   console.log(props)
 
+  let getBornYear = () => new Date().getFullYear() - props.age
+
   return (
     <div>
       <p>
-        Hello {props.name ?? '[name]'}, you are {props.age ?? '[age]'} years old
+        Hello {props.name}, you are {props.age} years old
       </p>
+      <p>So you were probalby born in {getBornYear()}</p>
     </div>
   )
 }
