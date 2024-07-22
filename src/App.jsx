@@ -12,7 +12,8 @@ function App() {
         <h1>Greetings</h1>
       </header>
       <main>
-        <Counter />
+        <StepCounter />
+        <ValueCounter />
         <Hello2 />
         <Hello name="George" age={26} />
         <Hello name="Diasy" age={16} />
@@ -34,7 +35,33 @@ function App() {
 
 export default App
 
-function Counter() {
+function StepCounter() {
+  let [clicks, setClicks] = useState({ left: 0, right: 0 })
+
+  return (
+    <div>
+      <h2>Step Counter Example</h2>
+      <div>
+        {clicks.left}
+        <Button
+          text="left"
+          onClick={() =>
+            setClicks((clicks) => ({ ...clicks, left: clicks.left + 1 }))
+          }
+        />
+        <Button
+          text="right"
+          onClick={() =>
+            setClicks((clicks) => ({ ...clicks, right: clicks.right + 1 }))
+          }
+        />
+        {clicks.right}
+      </div>
+    </div>
+  )
+}
+
+function ValueCounter() {
   let [counter, setCounter] = useState(0)
 
   console.log('rendering...', counter)
@@ -45,19 +72,20 @@ function Counter() {
 
   return (
     <div>
-      <CounterDisplay counter={counter} />
-      <CounterButton text="plus" onClick={increaseByOne} />
-      <CounterButton text="zero" onClick={setToZero} />
-      <CounterButton text="minus" onClick={decreaseByOne} />
+      <h2>Value Counter Example</h2>
+      <ValueCounterDisplay counter={counter} />
+      <Button text="plus" onClick={increaseByOne} />
+      <Button text="zero" onClick={setToZero} />
+      <Button text="minus" onClick={decreaseByOne} />
     </div>
   )
 }
 
-function CounterDisplay({ counter }) {
+function ValueCounterDisplay({ counter }) {
   return <div>{counter}</div>
 }
 
-function CounterButton({ text, onClick }) {
+function Button({ text, onClick }) {
   return (
     <button type="button" onClick={onClick}>
       {text}
