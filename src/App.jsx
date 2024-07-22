@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 function App() {
   let name = 'Patrick'
   let age = 9
@@ -10,6 +12,7 @@ function App() {
         <h1>Greetings</h1>
       </header>
       <main>
+        <Counter />
         <Hello2 />
         <Hello name="George" age={26} />
         <Hello name="Diasy" age={16} />
@@ -30,6 +33,20 @@ function App() {
 }
 
 export default App
+
+function Counter() {
+  let [counter, setCounter] = useState(0)
+
+  console.log('rendering...', counter)
+
+  return (
+    <div>
+      <div>{counter}</div>
+      <button onClick={() => setCounter((counter) => counter + 1)}>plus</button>
+      <button onClick={() => setCounter(0)}>zero</button>
+    </div>
+  )
+}
 
 function Hello2() {
   let now = new Date()
