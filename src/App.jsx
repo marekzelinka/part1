@@ -39,12 +39,29 @@ function Counter() {
 
   console.log('rendering...', counter)
 
+  let increaseByOne = () => setCounter((counter) => counter + 1)
+  let decreaseByOne = () => setCounter((counter) => counter - 1)
+  let setToZero = () => setCounter(0)
+
   return (
     <div>
-      <div>{counter}</div>
-      <button onClick={() => setCounter((counter) => counter + 1)}>plus</button>
-      <button onClick={() => setCounter(0)}>zero</button>
+      <CounterDisplay counter={counter} />
+      <CounterButton text="plus" onClick={increaseByOne} />
+      <CounterButton text="zero" onClick={setToZero} />
+      <CounterButton text="minus" onClick={decreaseByOne} />
     </div>
+  )
+}
+
+function CounterDisplay({ counter }) {
+  return <div>{counter}</div>
+}
+
+function CounterButton({ text, onClick }) {
+  return (
+    <button type="button" onClick={onClick}>
+      {text}
+    </button>
   )
 }
 
