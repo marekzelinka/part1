@@ -38,6 +38,7 @@ export default App
 function StepCounter() {
   let [clicks, setClicks] = useState({ left: 0, right: 0 })
   let [allClicks, setAllClicks] = useState([])
+  let [total, setTotal] = useState(0)
 
   return (
     <div>
@@ -47,20 +48,25 @@ function StepCounter() {
         <Button
           text="left"
           onClick={() => {
-            setClicks((clicks) => ({ ...clicks, left: clicks.left + 1 }))
+            let updatedLeft = clicks.left + 1
+            setClicks({ ...clicks, left: updatedLeft })
             setAllClicks((allClicks) => allClicks.concat('L'))
+            setTotal(updatedLeft + clicks.right)
           }}
         />
         <Button
           text="right"
           onClick={() => {
-            setClicks((clicks) => ({ ...clicks, right: clicks.right + 1 }))
+            let updatedRight = clicks.right + 1
+            setClicks({ ...clicks, right: updatedRight })
             setAllClicks((allClicks) => allClicks.concat('R'))
+            setTotal(updatedRight + clicks.left)
           }}
         />
         {clicks.right}
       </div>
       <p>{allClicks.join(' ')}</p>
+      <p>total {total}</p>
     </div>
   )
 }
